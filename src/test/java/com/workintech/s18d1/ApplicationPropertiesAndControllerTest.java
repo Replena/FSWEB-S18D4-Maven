@@ -96,7 +96,7 @@ class ApplicationPropertiesAndControllerTest {
     @Test
     @DisplayName("Burger not found exception test")
     void testBurgerNotFoundException() throws Exception {
-        given(burgerDao.findById(anyLong())).willThrow(new BurgerException("Burger not found", HttpStatus.NOT_FOUND));
+        given(burgerDao.findById(anyLong())).willThrow(BurgerException.createBurgerException("Burger not found", HttpStatus.NOT_FOUND));
 
         mockMvc.perform(get("/burger/{id}", 1L))
                 .andExpect(status().isNotFound())

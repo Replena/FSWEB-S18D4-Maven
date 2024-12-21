@@ -161,7 +161,7 @@ class MainTest {
     }
     @Test
     void testImplementsBurgerDaoInterface() {
-        BurgerDaoImpl burgerDaoImpl = new BurgerDaoImpl(null);
+        BurgerDaoImpl burgerDaoImpl = BurgerDaoImpl.createBurgerDaoImpl(null);
         assertTrue(burgerDaoImpl instanceof BurgerDao, "BurgerDaoImpl should implement BurgerDao interface");
     }
 
@@ -178,7 +178,7 @@ class MainTest {
         String expectedMessage = "Test exception message";
         HttpStatus expectedStatus = HttpStatus.BAD_REQUEST;
 
-        BurgerException exception = new BurgerException(expectedMessage, expectedStatus);
+        BurgerException exception = BurgerException.createBurgerException(expectedMessage, expectedStatus);
 
 
         assertEquals(expectedMessage, exception.getMessage(), "The exception message should match the expected value.");
@@ -187,7 +187,7 @@ class MainTest {
 
     @Test
     void testBurgerExceptionIsRuntimeException() {
-        BurgerException exception = new BurgerException("Test", HttpStatus.BAD_REQUEST);
+        BurgerException exception = BurgerException.createBurgerException("Test", HttpStatus.BAD_REQUEST);
 
 
         assertTrue(exception instanceof RuntimeException, "BurgerException should be an instance of RuntimeException.");
